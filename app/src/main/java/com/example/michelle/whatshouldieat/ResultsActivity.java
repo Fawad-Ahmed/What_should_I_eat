@@ -8,15 +8,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-// API food2fork
-// KEY: 85f5cc2681661390c7a2936b73168c7f
-
-// Search
-// http://food2fork.com/api/search?key={KEY}&q=shredded%20chicken
-
-// Get
-// http://food2fork.com/api/get?key={KEY}&rId={ID}
-
 public class ResultsActivity extends AppCompatActivity {
 
     private EditText search_bar;
@@ -55,7 +46,6 @@ public class ResultsActivity extends AppCompatActivity {
                 intent.putExtra("id", searchAsyncTask.search_results.get(position).id);
 
                 startActivity(intent);
-                finish();
             }
         });
     }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Michelle on 8-12-2016.
+ * Gets the recipe from the HttpHelper and puts in a ListView.
  */
 
 class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
@@ -47,12 +48,13 @@ class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
                 activity.setTitle(title);
 
                 // Get ingredients
-                ArrayList<String> ingredients = new ArrayList<>();
+                ArrayList<Ingredient> ingredients = new ArrayList<>();
                 JSONArray jsonArray_ingredients = json_recpie_info.getJSONArray("ingredients");
 
                 for (int i = 0; i < jsonArray_ingredients.length(); i++) {
                     System.out.println(jsonArray_ingredients.get(i).toString());
-                    ingredients.add(jsonArray_ingredients.get(i).toString());
+                    Ingredient ingredient = new Ingredient(jsonArray_ingredients.get(i).toString(), true);
+                    ingredients.add(ingredient);
                 }
 
                 // Set results to adapter
@@ -64,8 +66,7 @@ class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
                 ImageView imageView = (ImageView) activity.findViewById(R.id.imageView);
                 new DownloadImageTask(imageView).execute(image_url);
 
-                String source_url = json_recpie_info.getString("source_url");
-                RecipeActivity.directions_url = source_url;
+                RecipeActivity.directions_url = json_recpie_info.getString("source_url");
 
             } catch (JSONException e) {
                 e.printStackTrace();
