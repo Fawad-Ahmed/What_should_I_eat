@@ -40,16 +40,14 @@ class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
             super.onPostExecute(result);
 
             try{
-                JSONObject recipe = new JSONObject(result);
-                String recpie_info = recipe.getString("recipe");
-                JSONObject json_recpie_info = new JSONObject(recpie_info);
+                JSONObject json_recpie_info = new JSONObject(result);
 
-                String title = json_recpie_info.getString("title");
+                String title = json_recpie_info.getString("name");
                 activity.setTitle(title);
 
                 // Get ingredients
                 ArrayList<Ingredient> ingredients = new ArrayList<>();
-                JSONArray jsonArray_ingredients = json_recpie_info.getJSONArray("ingredients");
+                JSONArray jsonArray_ingredients = json_recpie_info.getJSONArray("ingredientLines");
 
                 for (int i = 0; i < jsonArray_ingredients.length(); i++) {
                     System.out.println(jsonArray_ingredients.get(i).toString());
@@ -62,11 +60,16 @@ class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
                 ListView listView = (ListView) activity.findViewById(R.id.ingredients_listView);
                 listView.setAdapter(adapter);
 
-                String image_url = json_recpie_info.getString("image_url");
+                JSONArray images = json_recpie_info.getJSONArray("images");
+                JSONObject image_urls = images.getJSONObject(0);
+                String image_url = image_urls.getString("hostedLargeUrl");
+
                 ImageView imageView = (ImageView) activity.findViewById(R.id.imageView);
                 new DownloadImageTask(imageView).execute(image_url);
 
-                RecipeActivity.directions_url = json_recpie_info.getString("source_url");
+                JSONObject source = json_recpie_info.getJSONObject("source");
+                RecipeActivity.directions_url = source.getString("sourceRecipeUrl");
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

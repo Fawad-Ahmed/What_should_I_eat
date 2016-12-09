@@ -11,27 +11,16 @@ public class Recipe {
     String title;
     String id;
     String image_url;
-    String social_rank;
     ArrayList<String> ingredients;
-    String source_url;
 
     // Constructor
-    Recipe(String title, String id, String image_url, String social_rank) {
+    Recipe(String title, String id, String image_url, ArrayList<String> ingredients) {
         this.title = title;
         this.id = id;
         this.image_url = image_url;
-        this.social_rank = social_rank;
-    }
-
-    // Constructor
-    Recipe(String title, String id, String image_url, String social_rank, ArrayList<String> ingredients, String source_url) {
-        this.title = title;
-        this.id = id;
-        this.image_url = image_url;
-        this.social_rank = social_rank;
         this.ingredients = ingredients;
-        this.source_url = source_url;
     }
+
 
     public String toString() {
         return title;

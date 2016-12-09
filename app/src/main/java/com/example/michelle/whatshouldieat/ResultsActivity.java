@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class ResultsActivity extends AppCompatActivity {
 
     private EditText search_bar;
@@ -27,13 +29,13 @@ public class ResultsActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if(intent != null) {
-            String search_term = intent.getStringExtra("tag");
+            String[] search_term = intent.getStringArrayExtra("ingredients");
             show_results(search_term);
         }
     }
 
     // Get results from SearchAsyncTask and puts in ListView. Sets item click listener.
-    public void show_results(String search_term) {
+    public void show_results(String[] search_term) {
         // Calls results from AsyncTask
         final SearchAsyncTask searchAsyncTask = new SearchAsyncTask(ResultsActivity.this, search_result_listView);
         searchAsyncTask.execute(search_term);

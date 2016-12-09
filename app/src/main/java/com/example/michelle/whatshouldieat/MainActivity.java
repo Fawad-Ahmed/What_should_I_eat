@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+       
     // The arraylists that hold the ingredients
     ArrayList<Ingredient> ingredients = new ArrayList<>();
     ArrayList<Ingredient> groceries = new ArrayList<>();
@@ -144,20 +145,14 @@ public class MainActivity extends AppCompatActivity {
     // Creates the intent and starts result activity
     // Make search tag of selected items
     public void search(View view) {
-        String tag = "";
+        String[] ingredient_names = new String[ingredients.size()];
         for (int i = 0; i < ingredients.size(); i++) {
-            Ingredient ingredient = ingredients.get(i);
-            if (ingredient.selected) {
-                tag += ingredient + " ";
-                if (i != ingredients.size() - 1) {
-                    tag += " ";
-                }
-            }
+            ingredient_names[i] = ingredients.get(i).toString();
         }
 
         // Search on active ingredients
         Intent intent = new Intent(this, ResultsActivity.class);
-        intent.putExtra("tag", tag);
+        intent.putExtra("ingredients", ingredient_names);
         startActivity(intent);
     }
 }

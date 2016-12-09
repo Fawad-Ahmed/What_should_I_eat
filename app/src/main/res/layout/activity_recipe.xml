@@ -13,9 +13,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/imageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:contentDescription="Contains the image of the recipe" />
+        android:contentDescription="Contains the image of the recipe"
+        android:layout_margin="12dp" />
 
     <ListView
         android:layout_width="match_parent"
@@ -35,6 +34,6 @@
         android:onClick="viewOnWebsite"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@null" />
+        android:background="@color/colorPrimary" />
 
 </RelativeLayout>

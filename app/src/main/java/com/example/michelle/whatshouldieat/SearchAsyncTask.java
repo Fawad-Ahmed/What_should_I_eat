@@ -29,7 +29,7 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
     }
 
     protected String doInBackground(String... params) {
-        return HttpRequestHelper.downloadFromServer_search(params[0].replaceAll("\\s+","+"));
+        return HttpRequestHelper.downloadFromServer_search(params);
     }
 
     protected void onPostExecute(String result) {
@@ -41,18 +41,60 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
 
             try {
                 JSONObject respObj = new JSONObject(result);
-                JSONArray recipe_results = respObj.getJSONArray("recipes");
+                JSONArray recipe_results = respObj.getJSONArray("matches");
+
+                System.out.println("array " + recipe_results);
+
+                // print
+                System.out.println("length " + recipe_results.length());
 
                 // Get search results and put in ArrayList
                 for (int i = 0; i < recipe_results.length(); i++) {
                     JSONObject recipe = recipe_results.getJSONObject(i);
 
-                    String title = recipe.getString("title");
-                    String id = recipe.getString("recipe_id");
-                    String image_url = recipe.getString("image_url");
-                    String social_rank = recipe.getString("social_rank");
+                    String recipeName = recipe.getString("recipeName");
+                    String id = recipe.getString("id");
 
-                    search_results.add(new Recipe(title, id, image_url, social_rank));
+                    JSONObject image_urls_by_size = recipe.getJSONObject("imageUrlsBySize");
+                    String image_url = image_urls_by_size.getString("90");
+
+                    JSONArray json_ingredients = recipe.getJSONArray("ingredients");
+                    ArrayList<String> ingredients = new ArrayList<>();
+                    for (int j = 0; j < json_ingredients.length(); j++) {
+                        ingredients.add(json_ingredients.getString(j));
+                    }
+
+                    String sourceDisplayName = recipe.getString("sourceDisplayName");
+                    String totalTimeInSeconds = recipe.getString("totalTimeInSeconds");
+
+                    if (recipe.has("attributes")) {
+                        JSONObject attributes = recipe.getJSONObject("attributes");
+
+                        if (attributes.has("course")) {
+                            JSONArray json_courses = attributes.getJSONArray("course");
+                            System.out.println("COURSE" + json_courses);
+
+                            ArrayList<String> courses = new ArrayList<>();
+                            for (int j = 0; j < json_courses.length(); j++) {
+                                courses.add(json_courses.getString(j));
+                            }
+                        }
+
+                        if (attributes.has("flavors")) {
+                            JSONObject flavors = recipe.getJSONObject("flavors");
+                            if (!flavors.equals("null")) {
+
+                                String piquant = flavors.getString("piquant");
+                                String meaty = flavors.getString("meaty");
+                                String bitter = flavors.getString("bitter");
+                                String sweet = flavors.getString("sweet");
+                                String sour = flavors.getString("sour");
+                                String salty = flavors.getString("salty");
+                            }
+                        }
+                    }
+
+                    search_results.add(new Recipe(recipeName, id, image_url, ingredients));
                 }
 
                 // Set results to adapter

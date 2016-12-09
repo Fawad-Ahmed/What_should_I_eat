@@ -10,30 +10,34 @@ import java.net.URL;
 /**
  * Created by Michelle on 8-12-2016.
  *
- // API food2fork
- // KEY: 85f5cc2681661390c7a2936b73168c7f
-
- // Search
- // http://food2fork.com/api/search?key={KEY}&q=shredded%20chicken
-
- // Get
- // http://food2fork.com/api/get?key={KEY}&rId={ID}
+ * API: Yummly
+ *
+ * app_id = 505ee6ce
+ * app_key = cb6d5da1425c9ea816b063cf1c95f1e5
+ *
+ * Search by ingredient:
+ * http://api.yummly.com/v1/api/recipes?_app_id=505ee6ce&_app_key=cb6d5da1425c9ea816b063cf1c95f1e5&allowedIngredient[]=cheese
  */
-
 
 public class HttpRequestHelper {
 
 
     static String downloadFromServer_search(String... params) {
-        String KEY = "85f5cc2681661390c7a2936b73168c7f";
+        String ID = "505ee6ce";
+        String KEY = "cb6d5da1425c9ea816b063cf1c95f1e5";
 
-        String url1 = "http://food2fork.com/api/search?key=";
-        String url2 = "&q=";
+        String url1 = "http://api.yummly.com/v1/api/recipes?_app_id=";
+        String url2 = "&_app_key=";
+        String url3 = "&allowedIngredient[]=";
 
         URL url = null;
         String result = "";
-        String input = params[0];
-        String completeUrl = url1 + KEY + url2 + input;
+        String completeUrl = url1 + ID + url2 + KEY;
+        for (int i = 0; i < params.length; i++) {
+            completeUrl += url3 + params[i];
+        }
+
+        System.out.println(completeUrl);
 
         try{
             url = new URL(completeUrl);
@@ -75,15 +79,17 @@ public class HttpRequestHelper {
     }
 
     static String downloadFromServer_recipe(String... params) {
-        String KEY = "85f5cc2681661390c7a2936b73168c7f";
+        String app_id = "505ee6ce";
+        String app_key = "cb6d5da1425c9ea816b063cf1c95f1e5";
 
-        String url1 = "http://food2fork.com/api/get?key=";
-        String url2 = "&rId=";
+        String url1 = "http://api.yummly.com/v1/api/recipe/";
+        String url2 = "?_app_id=";
+        String url3 = "&_app_key=";
 
         URL url = null;
         String result = "";
         String recipe_ID = params[0];
-        String completeUrl = url1 + KEY + url2 + recipe_ID;
+        String completeUrl = url1 + recipe_ID + url2 + app_id + url3 + app_key;
 
         try{
             url = new URL(completeUrl);

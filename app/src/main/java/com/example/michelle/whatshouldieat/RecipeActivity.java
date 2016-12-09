@@ -37,6 +37,7 @@ public class RecipeActivity extends AppCompatActivity {
     public void viewOnWebsite(View view) {
         Intent intent = new Intent(this, ViewDirections.class);
         intent.putExtra("url", directions_url);
+        System.out.println("URL " + directions_url);
         intent.putExtra("title", getTitle().toString());
         startActivity(intent);
     }
