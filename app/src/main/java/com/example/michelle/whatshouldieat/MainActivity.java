@@ -1,6 +1,7 @@
 package com.example.michelle.whatshouldieat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-       
     // The arraylists that hold the ingredients
     ArrayList<Ingredient> ingredients = new ArrayList<>();
     ArrayList<Ingredient> groceries = new ArrayList<>();
@@ -52,13 +52,16 @@ public class MainActivity extends AppCompatActivity {
         ingredients_button = (Button)findViewById(R.id.ingredients);
         groceries_button = (Button)findViewById(R.id.groceries);
 
-
         // Give active tab white color
         if (active_tab.equals(TAB_INGREDIENTS)) {
             ingredients_button.setTextColor(ContextCompat.getColor(this, R.color.white));
         } else {
             groceries_button.setTextColor(ContextCompat.getColor(this, R.color.white));
         }
+
+
+
+
 
         // The listview that contains the ingredients
         ingredients_listView = (ListView)findViewById(R.id.ingredients_listView);
