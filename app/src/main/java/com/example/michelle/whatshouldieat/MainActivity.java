@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                 // Perform action when clicked on
                 Ingredient ingredient = adapter.getItem(pos);
-                list.set(pos, ingredient.switch_selection());
+                list.set(pos, ingredient != null ? ingredient.switch_selection() : null);
                 setListView(list);
             }
         });
@@ -148,9 +148,18 @@ public class MainActivity extends AppCompatActivity {
     // Creates the intent and starts result activity
     // Make search tag of selected items
     public void search(View view) {
-        String[] ingredient_names = new String[ingredients.size()];
+        // Make ArrayList of selected ingredients
+        ArrayList<Ingredient> selected_ingredients = new ArrayList<>();
         for (int i = 0; i < ingredients.size(); i++) {
-            ingredient_names[i] = ingredients.get(i).toString();
+            if (ingredients.get(i).selected) {
+                selected_ingredients.add(ingredients.get(i));
+            }
+        }
+
+        // Convert to array
+        String[] ingredient_names = new String[selected_ingredients.size()];
+        for (int i = 0; i < selected_ingredients.size(); i++) {
+            ingredient_names[i] = selected_ingredients.get(i).toString();
         }
 
         // Search on active ingredients
