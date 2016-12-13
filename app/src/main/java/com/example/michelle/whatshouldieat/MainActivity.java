@@ -1,11 +1,10 @@
 package com.example.michelle.whatshouldieat;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,9 +12,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class MainActivity extends AppCompatActivity {
+    // Firebase URL
+    private static final String FIREBASE_URL = "https://fir-whatshouldieat.firebaseio.com/";
+
+    // Ingredients and groceries references
+    Firebase ingredientRef = null;
+    Firebase groceriesRef = null;
+
+    // Firebase Reference
+    private Firebase firebaseRef;
 
     // The arraylists that hold the ingredients
     ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -59,27 +74,110 @@ public class MainActivity extends AppCompatActivity {
             groceries_button.setTextColor(ContextCompat.getColor(this, R.color.white));
         }
 
-
-
-
-
         // The listview that contains the ingredients
         ingredients_listView = (ListView)findViewById(R.id.ingredients_listView);
 
-        add_item_editText = (EditText)findViewById(R.id.addTextBar);
 
+        // Set the Firebase Database
+        Firebase.setAndroidContext(this);
+        Firebase firebaseRef = new Firebase(FIREBASE_URL);
+
+        // Get the ingredients list from the database
+        ingredientRef = firebaseRef.child("ingredients");
+        groceriesRef = firebaseRef.child("groceries");
+
+        // Listen if data in database is changed
+        ingredientRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // The arraylists that contain the ingredients and the groceries
+                ingredients = new ArrayList<>();
+
+                // Add ingredients from Firebase to the ingredients ArrayList
+                try {
+                    HashMap<String, HashMap<String, String>> ingredients_list = (HashMap<String, HashMap<String, String>>) dataSnapshot.getValue();
+
+                    for (String key : ingredients_list.keySet()) {
+                        HashMap<String, ?> ingredient_hash = ingredients_list.get(key);
+                        String title = (String) ingredient_hash.get("title");
+                        Boolean selected = (Boolean) ingredient_hash.get("selected");
+
+                        Ingredient ingredient = new Ingredient(title, selected, key);
+                        ingredients.add(ingredient);
+                    }
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+                // Check if ingredients tab is selected
+                if (active_tab.equals(TAB_INGREDIENTS)) {
+                    setListView(ingredients);
+                } else {
+                    setListView(groceries);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+        // Listen if data in database is changed
+        groceriesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // The arraylists that contain the ingredients and the groceries
+                groceries = new ArrayList<>();
+
+                // Add ingredients from Firebase to the groceries ArrayList
+                try {
+                    HashMap<String, HashMap<String, String>> groceries_list = (HashMap<String, HashMap<String, String>>) dataSnapshot.getValue();
+
+                    for (String key : groceries_list.keySet()) {
+                        HashMap<String, ?> ingredient_hash = groceries_list.get(key);
+                        String title = (String) ingredient_hash.get("title");
+                        Boolean selected = (Boolean) ingredient_hash.get("selected");
+
+                        Ingredient ingredient = new Ingredient(title, selected, key);
+                        groceries.add(ingredient);
+                    }
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                // Check if ingredients tab is selected
+                if (active_tab.equals(TAB_INGREDIENTS)) {
+                    setListView(ingredients);
+                } else {
+                    setListView(groceries);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+
+
+
+        // The EditText by wich you can add ingredients to the lists
+        add_item_editText = (EditText)findViewById(R.id.addTextBar);
 
         // When enter is pressed in the search bar, add item to appropriate list
         add_item_editText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View view, int keyCode, KeyEvent keyevent) {
                 if ((keyevent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Add action to perform
-                    Ingredient ingredient = new Ingredient(add_item_editText.getText().toString(), true);
+                    String key = "" + System.nanoTime();
+                    Ingredient ingredient = new Ingredient(add_item_editText.getText().toString(), true, key);
                     if (active_tab.equals(TAB_INGREDIENTS)) {
-                        ingredients.add(ingredient);
+                        ingredientRef.child(key).setValue(ingredient);
                         setListView(ingredients);
                     } else {
-                        groceries.add(ingredient);
+                        groceriesRef.child(key).setValue(ingredient);
                         setListView(groceries);
                     }
 
@@ -138,8 +236,12 @@ public class MainActivity extends AppCompatActivity {
         ingredients_listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
-                list.remove(pos);
-                setListView(list);
+                String key = list.get(pos).key;
+                if (active_tab.equals(TAB_INGREDIENTS)) {
+                    ingredientRef.child(key).removeValue();
+                } else {
+                    groceriesRef.child(key).removeValue();
+                }
                 return true;
             }
         });

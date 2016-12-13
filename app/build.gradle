@@ -17,9 +17,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
+    compile 'com.google.firebase:firebase-core:9.0.2'
+    compile 'com.google.firebase:firebase-database:9.0.2'
+    compile 'com.firebase:firebase-client-android:2.3.1'
+
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -28,3 +37,5 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
 }
+
+apply plugin: 'com.google.gms.google-services'

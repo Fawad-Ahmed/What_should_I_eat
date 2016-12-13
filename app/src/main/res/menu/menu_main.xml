@@ -1,11 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.michelle.whatshouldieat.MainActivity">
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings" />
 
-
+    <item android:title="Settings"
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_menu_preferences" />
 </menu>
