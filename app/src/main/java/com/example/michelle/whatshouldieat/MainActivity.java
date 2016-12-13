@@ -77,10 +77,13 @@ public class MainActivity extends AppCompatActivity {
         // The listview that contains the ingredients
         ingredients_listView = (ListView)findViewById(R.id.ingredients_listView);
 
+        Intent intent = getIntent();
+        String acc_id = intent.getStringExtra("acc_id");
 
         // Set the Firebase Database
         Firebase.setAndroidContext(this);
-        Firebase firebaseRef = new Firebase(FIREBASE_URL);
+        Firebase mRootRef = new Firebase(FIREBASE_URL);
+        Firebase firebaseRef = mRootRef.child(acc_id);
 
         // Get the ingredients list from the database
         ingredientRef = firebaseRef.child("ingredients");
