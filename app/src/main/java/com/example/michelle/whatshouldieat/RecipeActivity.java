@@ -4,21 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-
 
 public class RecipeActivity extends AppCompatActivity {
     public static String directions_url;
+    public static String acc_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +16,7 @@ public class RecipeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
+        acc_id = intent.getStringExtra("acc_id");
 
         // Retrieve info with infoAsyncTask
         final RecipeAsyncTask infoAsyncTask = new RecipeAsyncTask(this);

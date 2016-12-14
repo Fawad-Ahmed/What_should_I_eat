@@ -1,19 +1,19 @@
 package com.example.michelle.whatshouldieat;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 public class ResultsActivity extends AppCompatActivity {
 
     private EditText search_bar;
     private ListView search_result_listView;
+
+    String acc_id;
 
 
     @Override
@@ -27,11 +27,10 @@ public class ResultsActivity extends AppCompatActivity {
 
         // Get search term from MainActivity and put in ListView
         Intent intent = getIntent();
+        acc_id = intent.getStringExtra("acc_id");
 
-        if(intent != null) {
-            String[] search_term = intent.getStringArrayExtra("ingredients");
-            show_results(search_term);
-        }
+        String[] search_term = intent.getStringArrayExtra("ingredients");
+        show_results(search_term);
     }
 
     // Get results from SearchAsyncTask and puts in ListView. Sets item click listener.
@@ -46,6 +45,7 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent.putExtra("id", searchAsyncTask.search_results.get(position).id);
+                intent.putExtra("acc_id", acc_id);
 
                 startActivity(intent);
             }

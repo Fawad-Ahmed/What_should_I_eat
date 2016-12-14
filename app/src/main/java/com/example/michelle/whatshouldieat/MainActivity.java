@@ -22,6 +22,7 @@ import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
+
     // Firebase URL
     private static final String FIREBASE_URL = "https://fir-whatshouldieat.firebaseio.com/";
 
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Firebase Reference
     private Firebase firebaseRef;
+
+    // Google account id
+    String acc_id;
 
     // The arraylists that hold the ingredients
     ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -78,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         ingredients_listView = (ListView)findViewById(R.id.ingredients_listView);
 
         Intent intent = getIntent();
-        String acc_id = intent.getStringExtra("acc_id");
+        acc_id = intent.getStringExtra("acc_id");
 
         // Set the Firebase Database
         Firebase.setAndroidContext(this);
@@ -273,6 +277,9 @@ public class MainActivity extends AppCompatActivity {
         // Search on active ingredients
         Intent intent = new Intent(this, ResultsActivity.class);
         intent.putExtra("ingredients", ingredient_names);
+        intent.putExtra("acc_id", acc_id);
         startActivity(intent);
     }
+
+
 }

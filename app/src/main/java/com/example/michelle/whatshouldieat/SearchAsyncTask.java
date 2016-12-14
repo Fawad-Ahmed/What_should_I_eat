@@ -80,16 +80,20 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
                             }
 
                             if (attributes.has("flavors")) {
-                                JSONObject flavors = recipe.getJSONObject("flavors");
-                                if (!flavors.equals("null")) {
+                                JSONObject json_flavors = recipe.getJSONObject("flavors");
+                                if (!json_flavors.equals("null")) {
 
-                                    String piquant = flavors.getString("piquant");
-                                    String meaty = flavors.getString("meaty");
-                                    String bitter = flavors.getString("bitter");
-                                    String sweet = flavors.getString("sweet");
-                                    String sour = flavors.getString("sour");
-                                    String salty = flavors.getString("salty");
-                                }
+                                    String piquant = json_flavors.getString("piquant");
+                                    String meaty = json_flavors.getString("meaty");
+                                    String bitter = json_flavors.getString("bitter");
+                                    String sweet = json_flavors.getString("sweet");
+                                    String sour = json_flavors.getString("sour");
+                                    String salty = json_flavors.getString("salty");
+                                                                    }
+                            }
+
+                            if (attributes.has("rating")) {
+                                String rating = recipe.getString("rating");
                             }
                         }
 

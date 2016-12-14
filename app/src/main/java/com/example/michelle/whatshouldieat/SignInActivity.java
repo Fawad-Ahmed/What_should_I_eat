@@ -88,7 +88,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
             statusTextView.setText("Hello, " + acc.getDisplayName());
 
             // Intent to next activity
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, TabbedActivity.class);
             intent.putExtra("acc_id", acc.getId());
             startActivity(intent);
             finish();
