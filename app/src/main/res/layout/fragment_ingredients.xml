@@ -2,12 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.michelle.whatshouldieat.IngredientsFragment">
 
-    <ListView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/ingredients_listView"
-        android:layout_weight="1.06" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/ingredients_listView"
+            android:layout_weight="1.06" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="?android:attr/actionModeWebSearchDrawable"
+            android:layout_alignRight="@+id/ingredients_listView"
+            android:layout_alignBottom="@+id/ingredients_listView"
+            android:id="@+id/searchButton"
+            android:layout_margin="18dp"
+            android:onClick="search" />
+    </RelativeLayout>
+
 
 </FrameLayout>

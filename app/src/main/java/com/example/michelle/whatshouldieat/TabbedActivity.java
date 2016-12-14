@@ -2,8 +2,6 @@ package com.example.michelle.whatshouldieat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -46,8 +44,6 @@ public class TabbedActivity extends AppCompatActivity {
 
     // The arraylists that hold the ingredients
     ArrayList<Ingredient> ingredients = new ArrayList<>();
-    ArrayList<Ingredient> groceries = new ArrayList<>();
-
 
     // The editText to add an item to the lists
     static EditText add_item_editText;
@@ -67,7 +63,7 @@ public class TabbedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
 
-        setTitle("What Should I eat?");
+        setTitle("What should I eat?");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,16 +77,6 @@ public class TabbedActivity extends AppCompatActivity {
 
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
 
         add_item_editText = (EditText) findViewById(R.id.addTextBar);
 

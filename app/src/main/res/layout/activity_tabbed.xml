@@ -8,16 +8,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.michelle.whatshouldieat.TabbedActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|left"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"
-        app:layout_anchor="@+id/container"
-        app:layout_anchorGravity="center_vertical|right" />
-
 
     <RelativeLayout
         android:layout_width="match_parent"

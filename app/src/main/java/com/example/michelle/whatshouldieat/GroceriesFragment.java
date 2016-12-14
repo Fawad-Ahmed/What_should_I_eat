@@ -66,10 +66,10 @@ public class GroceriesFragment extends ListFragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_ingredients, container, false);
+        View view = inflater.inflate(R.layout.fragment_groceries, container, false);
 
         // The ListView that is going to contain the ingredients
-        groceries_listView = (ListView) view.findViewById(R.id.ingredients_listView);
+        groceries_listView = (ListView) view.findViewById(R.id.groceries_listView);
 
         // Set the Firebase Database
         Firebase.setAndroidContext(view.getContext());

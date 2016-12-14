@@ -1,6 +1,7 @@
 package com.example.michelle.whatshouldieat;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,43 +36,9 @@ public class IngredientsFragment extends ListFragment {
     // The list that holds the ingredients
     private ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-    /* This method fills in a given ListView with a given ArrayList.
-     * Then onItemClickListener and OnItemLongClickListener are
-     * instantiated.
-     * When clicked on an ingredient, it appears grey and it will
-     * not be included in the search query. When clicked again,
-     * it will be included again.
-     * When long clicked on an ingredient, it will be deleted.
-     */
-    public void setListView(final ListView listView, final ArrayList<Ingredient> list) {
-        final IngredientsAdapter adapter = new IngredientsAdapter(listView.getContext(), list);
-        listView.setAdapter(adapter);
-
-        // Performed when clicked: set ingredients active or inactive
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
-                // Perform action when clicked on
-                Ingredient ingredient = adapter.getItem(pos);
-                ingredientRef.child(ingredient.key).setValue(ingredient.switch_selection());
-                setListView(listView, list);
-            }
-        });
-
-        // Performed when long clicked: delete an item
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
-                String key = list.get(pos).key;
-                ingredientRef.child(key).removeValue();
-                return true;
-            }
-        });
-    }
-
     /* This method is called from the TabbedActivity. It inflates the container
-     * of that activity.
-     */
+    * of that activity.
+    */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -81,6 +48,9 @@ public class IngredientsFragment extends ListFragment {
 
         // The ListView that is going to contain the ingredients
         ingredients_listView = (ListView) view.findViewById(R.id.ingredients_listView);
+
+        // The search button
+        FloatingActionButton searchButton = (FloatingActionButton)view.findViewById(R.id.searchButton);
 
         // Set the Firebase Database
         Firebase.setAndroidContext(view.getContext());
@@ -134,5 +104,40 @@ public class IngredientsFragment extends ListFragment {
 
         // Finally, return the view to the Tabbed Activity
         return view;
+    }
+
+
+    /* This method fills in a given ListView with a given ArrayList.
+     * Then onItemClickListener and OnItemLongClickListener are
+     * instantiated.
+     * When clicked on an ingredient, it appears grey and it will
+     * not be included in the search query. When clicked again,
+     * it will be included again.
+     * When long clicked on an ingredient, it will be deleted.
+     */
+    public void setListView(final ListView listView, final ArrayList<Ingredient> list) {
+        final IngredientsAdapter adapter = new IngredientsAdapter(listView.getContext(), list);
+        listView.setAdapter(adapter);
+
+        // Performed when clicked: set ingredients active or inactive
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                // Perform action when clicked on
+                Ingredient ingredient = adapter.getItem(pos);
+                ingredientRef.child(ingredient.key).setValue(ingredient.switch_selection());
+                setListView(listView, list);
+            }
+        });
+
+        // Performed when long clicked: delete an item
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
+                String key = list.get(pos).key;
+                ingredientRef.child(key).removeValue();
+                return true;
+            }
+        });
     }
 }
