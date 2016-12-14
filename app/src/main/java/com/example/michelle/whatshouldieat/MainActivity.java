@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
                 // Add ingredients from Firebase to the ingredients ArrayList
                 try {
-                    HashMap<String, HashMap<String, String>> ingredients_list = (HashMap<String, HashMap<String, String>>) dataSnapshot.getValue();
+                    HashMap<String, HashMap<String, String>> ingredients_list =
+                            (HashMap<String, HashMap<String, String>>) dataSnapshot.getValue();
 
                     for (String key : ingredients_list.keySet()) {
                         HashMap<String, ?> ingredient_hash = ingredients_list.get(key);
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-                    System.out.println(e);
+                    // Do nothing
                 }
 
                 // Check if ingredients tab is selected
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-                    System.out.println(e);
+                    // Do nothing
                 }
                 // Check if ingredients tab is selected
                 if (active_tab.equals(TAB_INGREDIENTS)) {
@@ -229,9 +230,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                 // Perform action when clicked on
-                Ingredient ingredient = adapter.getItem(pos);
-                list.set(pos, ingredient != null ? ingredient.switch_selection() : null);
-                setListView(list);
+                if (active_tab.equals(TAB_INGREDIENTS)) {
+                    Ingredient ingredient = adapter.getItem(pos);
+                    ingredientRef.child(ingredient.key).setValue(ingredient.switch_selection());
+                    setListView(list);
+                }
             }
         });
 
