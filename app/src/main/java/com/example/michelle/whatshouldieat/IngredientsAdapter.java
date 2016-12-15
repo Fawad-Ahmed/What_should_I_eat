@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class IngredientsAdapter extends ArrayAdapter<Ingredient> {
 
 
         Ingredient ingredient = getItem(position);
-        TextView textView = (TextView) view.findViewById(R.id.textView);
+        TextView textView = (TextView) view.findViewById(R.id.titleView);
         textView.setText(ingredient != null ? ingredient.toString() : null);
 
         if (ingredient != null ? ingredient.selected : null) {

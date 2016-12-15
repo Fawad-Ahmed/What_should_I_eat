@@ -58,7 +58,7 @@ public class GroceriesFragment extends ListFragment {
         });
     }
 
-    /* This method is called from the TabbedActivity. It inflates the container
+    /* This method is called from the MainActivity. It inflates the container
      * of that activity.
      */
     @Override
@@ -74,7 +74,7 @@ public class GroceriesFragment extends ListFragment {
         // Set the Firebase Database
         Firebase.setAndroidContext(view.getContext());
         Firebase mRootRef = new Firebase(FIREBASE_URL);
-        Firebase firebaseRef = mRootRef.child(TabbedActivity.acc_id);
+        Firebase firebaseRef = mRootRef.child(MainActivity.acc_id);
 
         // Get the ingredients list from the database
         groceriesRef = firebaseRef.child("groceries");

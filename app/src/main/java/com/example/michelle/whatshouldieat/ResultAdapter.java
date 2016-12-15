@@ -31,9 +31,22 @@ public class ResultAdapter extends ArrayAdapter<Recipe> {
         View view = inflater.inflate(R.layout.search_result_row, parent, false);
         Recipe item = getItem(position);
 
-        TextView textView = (TextView) view.findViewById(R.id.textView);
+        TextView textView = (TextView) view.findViewById(R.id.titleView);
         textView.setText(item.toString());
 
+        TextView courseView = (TextView) view.findViewById(R.id.courseView);
+        String courses = "";
+        if (item.courses.size() > 0) {
+            for (int i = 0; i < item.courses.size(); i++) {
+                if (i != 0) {
+                    courses += ", ";
+                }
+                courses += item.courses.get(i);
+            }
+            courseView.setText(courses);
+        } else {
+            courseView.setVisibility(View.GONE);
+        }
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
         String image_url = item.image_url;
         new DownloadImageTask(imageView).execute(image_url);

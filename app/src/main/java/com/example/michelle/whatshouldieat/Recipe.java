@@ -12,13 +12,15 @@ public class Recipe {
     String id;
     String image_url;
     ArrayList<String> ingredients;
+    ArrayList<String> courses;
 
     // Constructor
-    Recipe(String title, String id, String image_url, ArrayList<String> ingredients) {
+    Recipe(String title, String id, String image_url, ArrayList<String> ingredients, ArrayList<String> courses) {
         this.title = title;
         this.id = id;
         this.image_url = image_url;
         this.ingredients = ingredients;
+        this.courses = courses;
     }
 
 

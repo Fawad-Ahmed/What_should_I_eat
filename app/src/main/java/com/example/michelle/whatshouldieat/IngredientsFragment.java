@@ -34,9 +34,9 @@ public class IngredientsFragment extends ListFragment {
     ListView ingredients_listView;
 
     // The list that holds the ingredients
-    private ArrayList<Ingredient> ingredients = new ArrayList<>();
+    public static ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-    /* This method is called from the TabbedActivity. It inflates the container
+    /* This method is called from the MainActivity. It inflates the container
     * of that activity.
     */
     @Override
@@ -55,7 +55,7 @@ public class IngredientsFragment extends ListFragment {
         // Set the Firebase Database
         Firebase.setAndroidContext(view.getContext());
         Firebase mRootRef = new Firebase(FIREBASE_URL);
-        Firebase firebaseRef = mRootRef.child(TabbedActivity.acc_id);
+        Firebase firebaseRef = mRootRef.child(MainActivity.acc_id);
 
         // Get the ingredients list from the database
         ingredientRef = firebaseRef.child("ingredients");
@@ -105,7 +105,6 @@ public class IngredientsFragment extends ListFragment {
         // Finally, return the view to the Tabbed Activity
         return view;
     }
-
 
     /* This method fills in a given ListView with a given ArrayList.
      * Then onItemClickListener and OnItemLongClickListener are

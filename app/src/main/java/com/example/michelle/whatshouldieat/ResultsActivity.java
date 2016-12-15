@@ -30,6 +30,7 @@ public class ResultsActivity extends AppCompatActivity {
         acc_id = intent.getStringExtra("acc_id");
 
         String[] search_term = intent.getStringArrayExtra("ingredients");
+
         show_results(search_term);
     }
 
@@ -50,5 +51,8 @@ public class ResultsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
+
 }

@@ -4,7 +4,9 @@
     tools:context="com.example.michelle.whatshouldieat.MainActivity">
 
 
-    <item android:title="Settings"
-        android:id="@+id/settings"
+    <item android:title="Preferences"
+        android:id="@+id/preferences"
         android:icon="@android:drawable/ic_menu_preferences" />
+    <item android:title="Log out"
+        android:id="@+id/Logout" />
 </menu>

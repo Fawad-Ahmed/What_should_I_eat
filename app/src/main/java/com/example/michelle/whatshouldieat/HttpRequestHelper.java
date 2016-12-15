@@ -21,17 +21,37 @@ public class HttpRequestHelper {
     static String app_id = "505ee6ce";
     static String app_key = "cb6d5da1425c9ea816b063cf1c95f1e5";
 
-    static String downloadFromServer_search(String... params) {
+    static String downloadFromServer_search(String[] allergies, String[] diets, String... params) {
         // Create URL to request from
         String url1 = "http://api.yummly.com/v1/api/recipes?_app_id=";
         String url2 = "&_app_key=";
         String url3 = "&allowedIngredient[]=";
+        String url4 = "&allowedAllergy[]=";
+        String url5 = "&allowedDiet[]=";
 
         String completeUrl = url1 + app_id + url2 + app_key;
+        // Add the ingredients
         for (int i = 0; i < params.length; i++) {
             completeUrl += url3 + params[i].replaceAll("\\s+","+");
         }
 
+
+
+
+        // Add the allergies
+        for (int i = 0; i < allergies.length; i++) {
+            completeUrl += url4 + allergies[i];
+        }
+
+
+        String[] diet_searchvalues = {};
+
+        // Add the diets
+        for (int i = 0; i < diets.length; i++) {
+            completeUrl += url5 + diets[i].replaceAll("\\s+","+");
+        }
+
+        System.out.println(completeUrl);
         return downloadFromServer(completeUrl);
     }
 
