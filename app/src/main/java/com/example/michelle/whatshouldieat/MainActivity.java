@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         add_item_editText = (EditText) findViewById(R.id.addTextBar);
 
 
+
+
         // TODO: user.getUID ...
         // Get the account id from the Google account
         Intent intent = getIntent();
@@ -151,17 +153,24 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.preferences) {
-            Intent intent = new Intent(this, SettingsActivity.class);
+        if (id == R.id.allergies_menu) {
+            Intent intent = new Intent(this, AllergiesPrefsActivity.class);
             startActivity(intent);
-
             return true;
-        } else if (id == R.id.logout) {
-            Intent intent = new Intent(this, SignInActivity.class);
-            intent.putExtra("status", "sign out");
+        } else if (id == R.id.diets_menu) {
+            Intent intent = new Intent(this, DietPrefsActivity.class);
             startActivity(intent);
-        }
+            return true;
+        } else if (id == R.id.about_menu) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.logout_menu) {
 
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            finish();
+        }
         return super.onOptionsItemSelected(item);
     }
 
