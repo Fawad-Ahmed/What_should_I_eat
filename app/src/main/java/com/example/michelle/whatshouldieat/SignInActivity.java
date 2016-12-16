@@ -45,7 +45,6 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
         signOutButton = (Button) findViewById(R.id.sign_out_button);
-        signOutButton.setVisibility(View.GONE);
         signOutButton.setOnClickListener(this);
 
     }
@@ -86,7 +85,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         if (result.isSuccess()) {
             GoogleSignInAccount acc = result.getSignInAccount();
             signInButton.setVisibility(View.GONE);
-            statusTextView.setText("Hello, " + acc.getDisplayName() + ".");
+            statusTextView.setText("Hello, " + (acc != null ? acc.getDisplayName() : null) + ".");
 
             // Intent to next activity
             Intent intent = new Intent(this, MainActivity.class);
@@ -94,7 +93,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
             startActivity(intent);
             finish();
         } else {
-            statusTextView.setText("Login failed.");
+            statusTextView.setText(R.string.failed_login);
         }
     }
 
@@ -102,7 +101,7 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
             @Override
             public void onResult(@NonNull Status status) {
-                statusTextView.setText("Succesfully signed out.");
+                statusTextView.setText(R.string.signed_out_message);
             }
         });
     }

@@ -15,15 +15,16 @@
         android:id="@+id/status_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hungry? Let's get started."
+        android:text="@string/SigninMessage"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="normal|bold"
-        android:padding="16dp"
         android:textAlignment="center"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:paddingTop="66dp"
+        android:paddingBottom="16dp" />
 
     <com.google.android.gms.common.SignInButton
         android:id = "@+id/sign_in_button"
@@ -33,7 +34,7 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Sign Out"
+        android:text="@string/sign_out_button_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sign_in_button"

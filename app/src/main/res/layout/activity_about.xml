@@ -10,4 +10,112 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.michelle.whatshouldieat.AboutActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/aboutView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/hungry_and_have_food_in_the_fridge_lying_around_but_have_no_inspiration_what_to_do_with_it" />
+
+    <TextView
+        android:text="@string/what_should_i_eat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aboutView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView3"
+        android:textStyle="normal|italic" />
+
+    <TextView
+        android:text="@string/solves_that_problem_for_you"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/aboutView"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/you_can_deselect_an_ingredient_by_tapping_it_once_and_it_will_not_be_required_in_the_recipes_you_search_for_it_can_be_selected_again_by_tapping_it_once_again_by_long_pressing_an_ingredient_it_will_be_removed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/adding_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="16dp" />
+
+    <TextView
+        android:text="@string/you_only_have_to_add_the_ingredients_you_have_to_your_ingredients_list_and_search_for_recipes_to_make_with_them"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="@string/recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView7"
+        android:paddingTop="16dp"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="@string/by_tapping_on_a_recipe_you_get_to_see_all_it_s_ingredients_there_may_be_some_ingredients_necessary_in_order_to_make_this_recipe_but_you_may_not_have_them_at_home_yet_simply_tap_on_an_ingredient_to_add_them_to_your_grocery_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView8"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/allergies_and_diets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView9"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textStyle="normal|bold"
+        android:paddingTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView9"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/you_can_specify_your_preferences_for_allergies_and_diets_in_the_menu_to_make_sure_you_don_t_have_to_read_recipes_that_you_wouldn_t_make" />
+
 </RelativeLayout>

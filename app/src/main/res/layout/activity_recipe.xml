@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.michelle.whatshouldieat.RecipeActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/courseView"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:padding="12dp"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,32 +42,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:contentDescription="Contains the image of the recipe"
+        android:contentDescription="@string/contains_the_image_of_the_recipe"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="12dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginStart="11dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:id="@+id/imageView2"
-        android:contentDescription="Contains the image of the recipe"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="12dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="11dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/courseView"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
 
 </RelativeLayout>
