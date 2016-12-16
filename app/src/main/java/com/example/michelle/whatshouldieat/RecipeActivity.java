@@ -5,6 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+/*
+ * The activity in which the recipe is showed. The user can
+ * click ingredients to add them to their grocery list.
+ * Also the directions page can be viewed.
+ */
+
 public class RecipeActivity extends AppCompatActivity {
     public static String directions_url;
     public static String acc_id;
@@ -14,16 +20,17 @@ public class RecipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
+        // Get id's
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
-        acc_id = intent.getStringExtra("acc_id");
+        String recipe_id = intent.getStringExtra("id"); // Recipe id
+        acc_id = intent.getStringExtra("acc_id"); // User account id
 
         // Retrieve info with infoAsyncTask
         final RecipeAsyncTask infoAsyncTask = new RecipeAsyncTask(this);
-        infoAsyncTask.execute(id);
-
+        infoAsyncTask.execute(recipe_id);
     }
 
+    // The action to perform then the view on website button is clicked.
     public void viewOnWebsite(View view) {
         Intent intent = new Intent(this, ViewDirections.class);
         intent.putExtra("url", directions_url);
@@ -31,6 +38,4 @@ public class RecipeActivity extends AppCompatActivity {
         intent.putExtra("title", getTitle().toString());
         startActivity(intent);
     }
-
-
 }

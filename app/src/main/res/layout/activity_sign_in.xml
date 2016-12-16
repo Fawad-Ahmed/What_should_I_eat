@@ -38,7 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sign_in_button"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/sign_out_button" />
+        android:id="@+id/sign_out_button"
+        android:layout_alignRight="@+id/sign_in_button"
+        android:layout_alignEnd="@+id/sign_in_button"
+        android:layout_alignLeft="@+id/sign_in_button"
+        android:layout_alignStart="@+id/sign_in_button"
+        android:textAlignment="center" />
 
 </RelativeLayout>

@@ -19,7 +19,7 @@ import java.util.HashMap;
 /*
  * Created by Michelle Appel on 14-12-2016.
  * This Fragment holds a ListView that contain all ingredients the
- * user has added to the grocerylist.
+ * user has added to the grocery list.
  */
 
 public class GroceriesFragment extends ListFragment {

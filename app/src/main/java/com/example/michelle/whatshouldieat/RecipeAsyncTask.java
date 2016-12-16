@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,8 +19,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Michelle on 8-12-2016.
  * Gets the recipe from the HttpHelper and puts in a ListView.
+ * Also, sets the Firebase to add ingredients to the grocery list.
  */
 
 class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
@@ -46,10 +47,10 @@ class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
             Toast.makeText(context, "No internet connection", Toast.LENGTH_SHORT).show();
         } else {
             super.onPostExecute(result);
-
             try{
                 JSONObject json_recpie_info = new JSONObject(result);
 
+                // Title
                 String title = json_recpie_info.getString("name");
                 activity.setTitle(title);
 
@@ -98,12 +99,11 @@ class RecipeAsyncTask extends AsyncTask<String, Integer, String> {
                 TextView courseView = (TextView)activity.findViewById(R.id.courseView);
                 courseView.setText(courses);
 
-
-
-                    // Set the Firebase Database
+                // Set the Firebase Database
                 Firebase.setAndroidContext(context);
                 Firebase mRootRef = new Firebase(FIREBASE_URL);
-                Firebase firebaseRef = mRootRef.child(RecipeActivity.acc_id);
+
+                Firebase firebaseRef = mRootRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                 // Get the ingredients list from the database
                 final Firebase groceriesRef = firebaseRef.child("groceries");

@@ -9,6 +9,12 @@ import android.widget.Switch;
 
 import java.util.ArrayList;
 
+/*
+ * This activity provides options for the user to set the preferences
+ * for their allergies. This preferences will be included in the
+ * search query of the recipes.
+ */
+
 public class AllergiesPrefsActivity extends AppCompatActivity {
 
     // The allergy prefs

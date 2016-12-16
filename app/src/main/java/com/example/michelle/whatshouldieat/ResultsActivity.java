@@ -5,15 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
+
+/*
+ * Shows the search results to the user.
+ */
 
 public class ResultsActivity extends AppCompatActivity {
 
-    private EditText search_bar;
+    // The listview
     private ListView search_result_listView;
-
-    String acc_id;
 
 
     @Override
@@ -21,13 +22,10 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-
-        search_bar = (EditText) findViewById(R.id.search_bar);
         search_result_listView = (ListView)findViewById(R.id.listView);
 
         // Get search term from MainActivity and put in ListView
         Intent intent = getIntent();
-        acc_id = intent.getStringExtra("acc_id");
 
         String[] search_term = intent.getStringArrayExtra("ingredients");
 
@@ -46,7 +44,6 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent.putExtra("id", searchAsyncTask.search_results.get(position).id);
-                intent.putExtra("acc_id", acc_id);
 
                 startActivity(intent);
             }

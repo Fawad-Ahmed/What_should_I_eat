@@ -10,8 +10,9 @@ import android.widget.Switch;
 
 import java.util.ArrayList;
 /**
- * Created by Michelle on 14-12-2016.
- * Set preferences in a listview
+ * Set preferences in a ListView. Preferences are allergy objects.
+ * The listview sets the title in the TextView and adapts the switch
+ * of a preference to the state of it.
  */
 
 public class PreferenceAdapter extends ArrayAdapter<Allergy> {
@@ -25,13 +26,17 @@ public class PreferenceAdapter extends ArrayAdapter<Allergy> {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
+        // Inflate the view
         View view = inflater.inflate(R.layout.preference_row, parent, false);
 
+        // The allergy object
         Allergy preference = getItem(position);
         Switch switchView = (Switch) view.findViewById(R.id.switchView);
 
+        // Set the TextView
         switchView.setText(preference.toString());
 
+        // Set the switch
         switchView.setChecked(preference.selected);
 
         return view;

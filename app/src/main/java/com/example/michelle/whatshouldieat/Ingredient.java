@@ -1,19 +1,14 @@
 package com.example.michelle.whatshouldieat;
 
 /**
- * Created by Michelle on 8-12-2016.
- * Holds an ingredient object.
+ * Holds an ingredient object. An ingredient object contains a
+ * title, a state of selection and a key.
  */
 
 public class Ingredient {
     public String title;
     public Boolean selected;
     public String key;
-
-    public Ingredient (String title, Boolean selected) {
-        this.title = title;
-        this.selected = selected;
-    }
 
     public Ingredient (String title, Boolean selected, String key) {
         this.title = title;

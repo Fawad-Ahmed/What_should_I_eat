@@ -127,33 +127,36 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
                     for (int i = 0; i < recipe_results.length(); i++) {
                         JSONObject recipe = recipe_results.getJSONObject(i);
 
-                        String recipeName = recipe.getString("recipeName");
-                        String id = recipe.getString("id");
+                        String recipeName = recipe.getString("recipeName"); // Name
+                        String id = recipe.getString("id"); // Id
 
+                        // The image
                         JSONObject image_urls_by_size = recipe.getJSONObject("imageUrlsBySize");
                         String image_url = image_urls_by_size.getString("90");
 
+                        // The ingredients
                         JSONArray json_ingredients = recipe.getJSONArray("ingredients");
                         ArrayList<String> ingredients = new ArrayList<>();
                         for (int j = 0; j < json_ingredients.length(); j++) {
                             ingredients.add(json_ingredients.getString(j));
                         }
 
-                        String sourceDisplayName = recipe.getString("sourceDisplayName");
-                        String totalTimeInSeconds = recipe.getString("totalTimeInSeconds");
+                        // This info is not yet used in this app.
+                        String sourceDisplayName = recipe.getString("sourceDisplayName"); // The name of the source
+                        String totalTimeInSeconds = recipe.getString("totalTimeInSeconds"); // The preparing time
 
                         ArrayList<String> courses = new ArrayList<>();
+                        // Has the JSONObject attributes: look what it contains.
                         if (recipe.has("attributes")) {
                             JSONObject attributes = recipe.getJSONObject("attributes");
-
+                            // Get courses
                             if (attributes.has("course")) {
                                 JSONArray json_courses = attributes.getJSONArray("course");
-
                                 for (int j = 0; j < json_courses.length(); j++) {
                                     courses.add(json_courses.getString(j));
                                 }
                             }
-
+                            // Get all flavors: This is not yet used in this app.
                             if (attributes.has("flavors")) {
                                 JSONObject json_flavors = recipe.getJSONObject("flavors");
                                 if (!json_flavors.equals("null")) {
@@ -164,17 +167,15 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
                                     String sweet = json_flavors.getString("sweet");
                                     String sour = json_flavors.getString("sour");
                                     String salty = json_flavors.getString("salty");
-                                                                    }
+                                }
                             }
-
+                            // The rating is not yet used in this app.
                             if (attributes.has("rating")) {
                                 String rating = recipe.getString("rating");
                             }
                         }
-
                         search_results.add(new Recipe(recipeName, id, image_url, ingredients, courses));
                     }
-
                     // Set results to adapter
                     ArrayAdapter moviesAdapter = new ResultAdapter(activity, search_results);
                     listView.setAdapter(moviesAdapter);

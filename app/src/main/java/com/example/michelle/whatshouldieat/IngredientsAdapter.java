@@ -11,9 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Michelle on 8-12-2016.
- * Sets ingredients objects in a ListView.
+/*
+ * Sets ingredient objects in a ListView.
  */
 
 public class IngredientsAdapter extends ArrayAdapter<Ingredient> {
@@ -27,13 +26,17 @@ public class IngredientsAdapter extends ArrayAdapter<Ingredient> {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
 
+        // Inflate view
         View view = inflater.inflate(R.layout.ingredient_row, parent, false);
 
-
+        // The ingredients
         Ingredient ingredient = getItem(position);
+
+        // Fill in the title
         TextView textView = (TextView) view.findViewById(R.id.titleView);
         textView.setText(ingredient != null ? ingredient.toString() : null);
 
+        // Changes the color of the text according to the selection value
         if (ingredient != null ? ingredient.selected : null) {
             textView.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
         } else {

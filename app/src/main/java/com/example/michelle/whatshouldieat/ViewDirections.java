@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/*
+ * Contains a WebView that shows the website with directions
+ * of the recipe.
+ */
+
 public class ViewDirections extends AppCompatActivity {
 
     @Override

@@ -18,13 +18,17 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+/*
+ * The MainActivity is a tabbed activity with a expandable menu.
+ * The tabs are ingredients and groceries. When selected, the appropriate
+ * fragment is showed.
+ */
 
-    // Contains the id of the users Google account
-    static String acc_id;
+public class MainActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -51,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     static Firebase ingredientRef = null;
     static Firebase groceriesRef = null;
 
+    // Contains the id of the users Google account
+    static String acc_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,17 +78,11 @@ public class MainActivity extends AppCompatActivity {
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-
         // The EditText by wich you can add ingredients to the lists
         add_item_editText = (EditText) findViewById(R.id.addTextBar);
 
-
-
-
-        // TODO: user.getUID ...
         // Get the account id from the Google account
-        Intent intent = getIntent();
-        acc_id = intent.getStringExtra("acc_id");
+        acc_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         // Set the Firebase Database
         Firebase.setAndroidContext(this);
@@ -133,8 +134,6 @@ public class MainActivity extends AppCompatActivity {
         // Search on active ingredients
         Intent intent = new Intent(this, ResultsActivity.class);
         intent.putExtra("ingredients", ingredient_names);
-
-        intent.putExtra("acc_id", acc_id);
         startActivity(intent);
     }
 
@@ -147,12 +146,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        // Which menu item is pressed: perform appropriate action.
         if (id == R.id.allergies_menu) {
             Intent intent = new Intent(this, AllergiesPrefsActivity.class);
             startActivity(intent);
@@ -166,8 +162,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.logout_menu) {
-
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, SignInActivity.class);
+            intent.putExtra("sign out", true);
             startActivity(intent);
             finish();
         }
@@ -183,9 +180,6 @@ public class MainActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public PlaceholderFragment() {
-        }
 
         /**
          * Returns a new instance of this fragment for the given section

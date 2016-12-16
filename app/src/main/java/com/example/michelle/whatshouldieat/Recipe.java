@@ -3,8 +3,8 @@ package com.example.michelle.whatshouldieat;
 import java.util.ArrayList;
 
 /**
- * Created by Michelle on 8-12-2016.
- * Holds a Recipe object
+ * Holds a Recipe object. A recipe object contains a title, an id,
+ * an image url, ingredients and courses.
  */
 
 public class Recipe {

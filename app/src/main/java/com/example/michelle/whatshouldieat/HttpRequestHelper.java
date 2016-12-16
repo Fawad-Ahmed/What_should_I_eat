@@ -8,13 +8,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Michelle on 8-12-2016.
+ * The HttpRequest helper requests the Yummly API and returns the result.
  *
- * API: Yummly
+ * downloadFromServer_search
+ * The input is the ingredients that are required and the preferences of
+ * the allergies and diets. The result is a list of recipes that comply
+ * with the query.
  *
- * app_id = 505ee6ce
- * app_key = cb6d5da1425c9ea816b063cf1c95f1e5
- *
+ * downloadFromServer_recipe
+ * The input is a recipe id and the output is an elaborate amount of
+ * information about the recipe, such as the ingredients, the nutritional
+ * value, the course etc. Unfortunately, directions isn't included in this
+ * information, but a link to the website that contain the directions is.
  */
 
 public class HttpRequestHelper {
@@ -35,23 +40,16 @@ public class HttpRequestHelper {
             completeUrl += url3 + params[i].replaceAll("\\s+","+");
         }
 
-
-
-
         // Add the allergies
         for (int i = 0; i < allergies.length; i++) {
             completeUrl += url4 + allergies[i];
         }
-
-
-        String[] diet_searchvalues = {};
 
         // Add the diets
         for (int i = 0; i < diets.length; i++) {
             completeUrl += url5 + diets[i].replaceAll("\\s+","+");
         }
 
-        System.out.println(completeUrl);
         return downloadFromServer(completeUrl);
     }
 
@@ -83,10 +81,10 @@ public class HttpRequestHelper {
                 connection = (HttpURLConnection)url.openConnection();
                 connection.setRequestMethod("GET");
 
-                // get response code
+                // Get response code
                 Integer responseCode = connection.getResponseCode();
 
-                // if 200-300, read inputstream
+                // If 200-300, read inputstream
                 if(200 <= responseCode && responseCode <= 299) {
                     BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
