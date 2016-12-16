@@ -85,10 +85,10 @@
     <string name="SigninMessage">Hungry? Let\'s get started.</string>
     <string name="sign_out_button_text">Sign Out</string>
     <string name="failed_login">Login failed.</string>
-    <string name="signed_out_message">Succesfully signed out.</string>
+    <string name="signed_out_message">Successfully signed out.</string>
     <string name="hungry_and_have_food_in_the_fridge_lying_around_but_have_no_inspiration_what_to_do_with_it">Hungry and have food in the fridge lying around, but have no inspiration what to do with it?</string>
     <string name="what_should_i_eat">What Should I Eat?</string>
-    <string name="solves_that_problem_for_you">solves that problem for you.</string>
+    <string name="solves_that_problem_for_you"> solves that problem for you.</string>
     <string name="you_can_deselect_an_ingredient_by_tapping_it_once_and_it_will_not_be_required_in_the_recipes_you_search_for_it_can_be_selected_again_by_tapping_it_once_again_by_long_pressing_an_ingredient_it_will_be_removed">You can deselect an ingredient by tapping it once and it will not be required in the recipes you search for. It can be selected again by tapping it once again. By long pressing an ingredient it will be removed.</string>
     <string name="adding_ingredients">Adding ingredients</string>
     <string name="you_only_have_to_add_the_ingredients_you_have_to_your_ingredients_list_and_search_for_recipes_to_make_with_them">You only have to add the ingredients you have to your ingredients list and search for recipes to make with them.</string>
