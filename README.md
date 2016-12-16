@@ -38,3 +38,53 @@ The allergy and diet preferences can be set. The search results of the recipes w
 ![whatsapp image 2016-12-16 at 15 22 18 8](https://cloud.githubusercontent.com/assets/17069785/21266402/5eddb6ec-c3a6-11e6-98ab-cc830c3b5234.jpeg)
 
 ![whatsapp image 2016-12-16 at 15 22 18 9](https://cloud.githubusercontent.com/assets/17069785/21266404/5fd9524a-c3a6-11e6-880a-fb10a0cdcabe.jpeg)
+
+# The feedback
+Eisen:
+
+        Live open API CHECK
+        
+        HTTP requests CHECK
+        
+        SharedPrefs TODO
+        
+        Firebase CHECK/TODO (firebaseAuth nog niet aanwezig)
+        
+        Organized code CHECK
+        
+        Documented code TODO   (README.md ontbreekt)
+
+Tips/Tops:
+
+        Erg nette scheiding van taken
+  
+        Goed leesbare code
+  
+        Consistente naamgeving
+  
+        Voeg dus nog ff een beschrijving toe van het doel van je app!:-)
+  
+
+MainActivity:
+
+        Goede naamgevingen 
+         
+        Genoeg comments
+         
+        Indentatie is goed
+         
+        onCancelled is leeg
+         
+        Smaken verschillen maar hier en daar evt. wat overbodige enters
+  
+        Je onCreate heeft een mooi natuurlijke opdeling, maar is te lang (ong. 140 lines) , maak hier meerdere methoden van (bv vanaf de database references)
+
+RecipeActivity / ViewDirections:
+
+    indentatie goed
+    
+    geef nog even een comment over het general purpose van deze activity
+
+SearchAsincTask:
+
+    Deel onPostExecute op in een paar methoden (suggestie alles uit de else{ <VOID> } van  (recipe_results.length == 0))
