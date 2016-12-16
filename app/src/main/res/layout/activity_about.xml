@@ -39,7 +39,8 @@
         android:layout_below="@+id/aboutView"
         android:layout_toRightOf="@+id/textView3"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="3dp" />
 
     <TextView
         android:text="@string/you_can_deselect_an_ingredient_by_tapping_it_once_and_it_will_not_be_required_in_the_recipes_you_search_for_it_can_be_selected_again_by_tapping_it_once_again_by_long_pressing_an_ingredient_it_will_be_removed"

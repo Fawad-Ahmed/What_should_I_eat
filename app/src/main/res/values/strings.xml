@@ -87,7 +87,7 @@
     <string name="failed_login">Login failed.</string>
     <string name="signed_out_message">Successfully signed out.</string>
     <string name="hungry_and_have_food_in_the_fridge_lying_around_but_have_no_inspiration_what_to_do_with_it">Hungry and have food in the fridge lying around, but have no inspiration what to do with it?</string>
-    <string name="what_should_i_eat">What Should I Eat?</string>
+    <string name="what_should_i_eat">What Should I Eat? </string>
     <string name="solves_that_problem_for_you"> solves that problem for you.</string>
     <string name="you_can_deselect_an_ingredient_by_tapping_it_once_and_it_will_not_be_required_in_the_recipes_you_search_for_it_can_be_selected_again_by_tapping_it_once_again_by_long_pressing_an_ingredient_it_will_be_removed">You can deselect an ingredient by tapping it once and it will not be required in the recipes you search for. It can be selected again by tapping it once again. By long pressing an ingredient it will be removed.</string>
     <string name="adding_ingredients">Adding ingredients</string>
